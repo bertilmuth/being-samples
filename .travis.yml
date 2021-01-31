@@ -4,3 +4,5 @@ jdk:
   - openjdk14
   - oraclejdk14
 
+script: mvn test -B
+
