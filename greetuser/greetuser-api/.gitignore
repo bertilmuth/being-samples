@@ -1,0 +1,8 @@
+.gradle
+.project
+.settings
+.classpath
+.toDelete
+build
+bin
+target
