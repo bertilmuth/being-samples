@@ -13,16 +13,16 @@ In a terminal, switch to the main directory and run the service:
 Press enter to stop the service.
 
 # Usage
-Example URL for GET/POST requests: 
+To receive a greeting, send a GET request to the [address](https://github.com/bertilmuth/being-samples/blob/main/greetuser/greetuser-api/src/main/java/org/requirementsascode/being/greetuser/api/GreetUserService.java) defined in the service interface:
 
-http://localhost:9000/api/greet/Joe
+    curl http://localhost:9000/api/greet/Joe
 
-If you send a GET request to the above URL, Joe will get greeted.
 Replace Joe by a different name, and the greeting will change.
-Internally, the service implementation responds to GET requests with the response
+The service implementation answers the GET request with the response
 defined by the [aggregate behavior](https://github.com/bertilmuth/being-samples/blob/main/greetuser/greetuser-impl/src/main/java/org/requirementsascode/being/greetuser/impl/GreetUserBehavior.java)'s `responseMessage()` method.
 
 Use POST requests for commands. The JSON must contain a `@type` property with simple class name of command, e.g. `ChangeGreetingText`.
+
 Example JSON:
 
 `{"@type":"ChangeGreetingText", "newText":"Guten Tag"}`
