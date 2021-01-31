@@ -23,6 +23,9 @@ defined by the [aggregate behavior](https://github.com/bertilmuth/being-samples/
 
 Use POST requests for commands. The JSON must contain a `@type` property with simple class name of command, e.g. `ChangeGreetingText`.
 
-Example JSON:
+Example:
 
-`{"@type":"ChangeGreetingText", "newText":"Guten Tag"}`
+Unix: `curl -H "Content-Type: application/json" -X POST -d '{"@type": "ChangeGreetingText", "newText":"Hi"}' http://localhost:9000/api/greet/Joe`
+
+Windows: `curl -H "Content-Type: application/json" -X POST -d "{\"@type\": \"ChangeGreetingText\", \"newText\":\"Hi\"}" http://localhost:9000/api/greet/Joe`
+
