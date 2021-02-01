@@ -9,12 +9,12 @@ import org.requirementsascode.being.AggregateService;
 public interface CounterService extends AggregateService {  
   @Override
   default String uniqueName() {
-    return "GreetUserService";
+    return "CounterService";
   }
   
   @Override
   default String address() {
-    return "/api/greet/:id";
+    return "/api/counter/:id";
   }
   
   @Override
