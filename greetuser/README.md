@@ -13,10 +13,11 @@ In a terminal, switch to the main directory and run the service:
 Press enter to stop the service.
 
 # Usage
-To receive a greeting, send a GET request to the [address](https://github.com/bertilmuth/being-samples/blob/main/greetuser/greetuser-api/src/main/java/org/requirementsascode/being/greetuser/api/GreetUserService.java) defined in the service interface:
+To receive a greeting, send a GET request to the [address](https://github.com/bertilmuth/being-samples/blob/main/greetuser/greetuser-api/src/main/java/org/requirementsascode/being/greetuser/api/GreetUserService.java) defined in the service interface.
 
-    Unix: curl http://localhost:9000/api/greet/Joe
-	Windows (PowerShell): iwr http://localhost:9000/api/greet/Joe
+Unix: `curl http://localhost:9000/api/greet/Joe`
+
+Windows (PowerShell): `iwr http://localhost:9000/api/greet/Joe`
 
 You'll receive a response with the text "Hello, Joe!". 
 Replace Joe by a different name, and the greeting will change.
