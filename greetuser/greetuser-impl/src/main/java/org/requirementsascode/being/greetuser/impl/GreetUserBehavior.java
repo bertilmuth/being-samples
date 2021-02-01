@@ -16,7 +16,7 @@ class GreetUserBehavior extends AggregateBehavior<Greeting>{
   
   @Override
   public Object responseMessage() {
-    return new GreetingResponse(aggregateRoot().text + ", " + aggregateRoot().id + "!");
+    return new GreetingResponse(aggregateRoot().getText() + ", " + aggregateRoot().getId() + "!");
   }
   
   @Override
@@ -30,7 +30,7 @@ class GreetUserBehavior extends AggregateBehavior<Greeting>{
   @Override
   public Model internalEventHandlers() {
     Model model = Model.builder()
-      .on(GreetingTextChanged.class).systemPublish(gtc -> Greeting.create(aggregateRoot().id, gtc.text))
+      .on(GreetingTextChanged.class).systemPublish(gtc -> Greeting.create(aggregateRoot().getId(), gtc.getText()))
       .build();
     return model;
   }

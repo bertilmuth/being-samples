@@ -4,14 +4,14 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.requirementsascode</groupId>
-    <artifactId>greetuser</artifactId>
+    <artifactId>counter</artifactId>
     <version>0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
     <modules>
-        <module>greetuser-api</module>
-        <module>greetuser-impl</module>
+        <module>counter-api</module>
+        <module>counter-impl</module>
     </modules>
 
     <build>
@@ -65,15 +65,20 @@
         </dependencies>
     </dependencyManagement>
     
-    <dependencies>   
+    <dependencies> 
         <dependency>
     		<groupId>org.requirementsascode</groupId>
     		<artifactId>being-core</artifactId>
     		<version>0.0.1.2-SNAPSHOT</version> 
-  		</dependency>  
+  		</dependency>   
          <dependency>
     		<groupId>org.requirementsascode</groupId>
     		<artifactId>being-lagom</artifactId>
+    		<version>0.0.1.2-SNAPSHOT</version> 
+  		</dependency>   
+  		<dependency>
+    		<groupId>org.requirementsascode</groupId>
+    		<artifactId>being-test</artifactId>
     		<version>0.0.1.2-SNAPSHOT</version> 
   		</dependency>   
     </dependencies>
