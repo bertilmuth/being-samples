@@ -28,6 +28,8 @@ public class CounterThreads {
     for (int i = 0; i < threadCount; i++) {
       try {
         threads[i].join();
+        long elapsedTime = runnables[i].calculateElapsedTime(System.currentTimeMillis());
+        System.out.println("Thread " + i + " finished after " + elapsedTime + " ms.");
       } catch (InterruptedException e) {
       }
       
@@ -44,12 +46,14 @@ public class CounterThreads {
 class CounterRunnable implements Runnable{
   private final Consumer<Object> behaviorTest;
   boolean pass = true;
+  private long startTime;
 
   public CounterRunnable(Consumer<Object> behaviorTest2) {
     this.behaviorTest = behaviorTest2;
   }
   
   public void run() {
+    startTime = System.currentTimeMillis();
     try {
       behaviorTest.accept(new IncrementCounter());
     } catch(Exception e) {
@@ -59,5 +63,10 @@ class CounterRunnable implements Runnable{
   
   public boolean hasPassed() {
     return pass;
+  }
+  
+  public long calculateElapsedTime(long endTimeInMillis) {
+    long elapsedTime = endTimeInMillis - startTime;
+    return elapsedTime;
   }
 }

@@ -10,15 +10,12 @@ import java.util.concurrent.TimeoutException;
 
 import org.junit.Test;
 import org.requirementsascode.being.JsonMessage;
-import org.requirementsascode.being.counter.api.CounterResponse;
-import org.requirementsascode.being.counter.api.CounterService;
-import org.requirementsascode.being.counter.api.IncrementCounter;
 
 import akka.Done;
 
 public class CounterServiceTest {
   @Test
-  public void storesPersonalizedGreeting() throws Exception {
+  public void incrementsCounter() throws Exception {
     withServer(defaultSetup().withCassandra(), server -> {
       CounterService service = server.client(CounterService.class);
       

@@ -1,10 +1,8 @@
 package org.requirementsascode.being.counter.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.requirementsascode.being.AggregateBehaviorTest;
 import org.requirementsascode.being.counter.api.IncrementCounter;
