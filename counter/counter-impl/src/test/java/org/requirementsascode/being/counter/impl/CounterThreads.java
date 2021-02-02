@@ -1,13 +1,14 @@
 package org.requirementsascode.being.counter.impl;
 
-import org.requirementsascode.being.AggregateBehaviorTest;
+import java.util.function.Consumer;
+
 import org.requirementsascode.being.counter.api.IncrementCounter;
 
 public class CounterThreads {
   private int threadCount;
-  private AggregateBehaviorTest<Counter> behaviorTest;
+  private Consumer<Object> behaviorTest;
 
-  public CounterThreads(AggregateBehaviorTest<Counter> behaviorTest, int threadCount) {
+  public CounterThreads(Consumer<Object> behaviorTest, int threadCount) {
     this.behaviorTest = behaviorTest;
     this.threadCount = threadCount;
   }
@@ -41,16 +42,16 @@ public class CounterThreads {
 }
 
 class CounterRunnable implements Runnable{
-  private final AggregateBehaviorTest<Counter> behaviorTest;
+  private final Consumer<Object> behaviorTest;
   boolean pass = true;
 
-  public CounterRunnable(AggregateBehaviorTest<Counter> behaviorTest) {
-    this.behaviorTest = behaviorTest;
+  public CounterRunnable(Consumer<Object> behaviorTest2) {
+    this.behaviorTest = behaviorTest2;
   }
   
   public void run() {
     try {
-      behaviorTest.when(new IncrementCounter());
+      behaviorTest.accept(new IncrementCounter());
     } catch(Exception e) {
       pass = false;
     }

@@ -2,7 +2,6 @@ package org.requirementsascode.being.counter.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -41,7 +40,7 @@ public class CounterTest {
   @Test
   @Ignore
   public void multithreadingCausesException() throws InterruptedException {
-    boolean pass = new CounterThreads(behaviorTest, 100).run();
+    boolean pass = new CounterThreads(behaviorTest::when, 100).run();
     assertTrue(pass);
   }
 }
