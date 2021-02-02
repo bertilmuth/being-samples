@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 
 import org.requirementsascode.being.counter.api.IncrementCounter;
 
-public class CounterThreads {
+class CounterThreads {
   private int threadCount;
   private Consumer<Object> behaviorTest;
 
@@ -28,8 +28,7 @@ public class CounterThreads {
     for (int i = 0; i < threadCount; i++) {
       try {
         threads[i].join();
-        long elapsedTime = runnables[i].calculateElapsedTime(System.currentTimeMillis());
-        System.out.println("Thread " + i + " finished after " + elapsedTime + " ms.");
+        runnables[i].calculateElapsedTime(System.currentTimeMillis());
       } catch (InterruptedException e) {
       }
       
