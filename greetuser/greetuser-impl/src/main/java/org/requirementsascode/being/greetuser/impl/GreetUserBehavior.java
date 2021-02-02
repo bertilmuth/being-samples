@@ -30,7 +30,7 @@ class GreetUserBehavior extends AggregateBehavior<Greeting>{
   @Override
   public Model internalEventHandlers() {
     Model model = Model.builder()
-      .on(GreetingTextChanged.class).systemPublish(gtc -> Greeting.create(aggregateRoot().getId(), gtc.getText()))
+      .on(GreetingTextChanged.class).systemPublish(this::newGreeting)
       .build();
     return model;
   }
@@ -43,6 +43,10 @@ class GreetUserBehavior extends AggregateBehavior<Greeting>{
     
     GreetingTextChanged event = new GreetingTextChanged(newText);
     return event;
+  }
+  
+  private Greeting newGreeting(GreetingTextChanged event) {
+    return Greeting.create(aggregateRoot().getId(), event.getText()); 
   }
   
   // Internal event classes

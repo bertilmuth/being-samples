@@ -2,9 +2,11 @@ package org.requirementsascode.being.greetuser.impl;
 
 import java.time.LocalDateTime;
 
+import org.requirementsascode.being.Properties;
+
 import lombok.Value;
 
-@Value
+@Value @Properties
 class Greeting{
   String id;
   String text;
