@@ -19,7 +19,8 @@ public class CounterServiceConcurrencyTest {
       
       final String aCounter = "aCounter";
       
-      boolean pass = new CounterThreads(inc -> postCommand(service, aCounter, inc), 100).run();
+      final int concurrentThreads = 300;
+      boolean pass = new CounterThreads(inc -> postCommand(service, aCounter, inc), concurrentThreads).run();
       assertTrue(pass);
     });
   }
@@ -27,8 +28,9 @@ public class CounterServiceConcurrencyTest {
   private Done postCommand(CounterService service, String id, Object command){
     Done done = null;
     try {
-      done = service.httpPost(id).invoke(command).toCompletableFuture().get(5, SECONDS);
+      done = service.httpPost(id).invoke(command).toCompletableFuture().get(15, SECONDS);
     } catch (Exception e) {
+      e.printStackTrace();
       fail();
     } 
     return done;
