@@ -1,4 +1,5 @@
-Sample project for the [being](https://github.com/bertilmuth/being) project.
+Sample project for the [Being](https://github.com/bertilmuth/being) project.
+This is a variation of the Lagom hello world example.
 
 # Getting started
 You need to have Java 8 and Maven >= 3.6.0 installed to run the samples. 
