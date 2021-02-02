@@ -14,7 +14,8 @@ class CounterBehavior extends AggregateBehavior<Counter>{
   
   @Override
   public Object responseMessage() {
-    return new CounterResponse(aggregateRoot().getValue());
+    CounterResponse counterResponse = new CounterResponse(aggregateRoot().getValue());
+	return counterResponse;
   }
   
   @Override
@@ -38,13 +39,13 @@ class CounterBehavior extends AggregateBehavior<Counter>{
     return event;
   }
   
-  private void incrementCounter() {
+  private void incrementCounter(CounterIncremented event) {
 	  aggregateRoot().increment();
   }
   
   // Internal event classes
-  
   @Properties
   static final class CounterIncremented{
+	  int newValue;
   }
 }

@@ -1,13 +1,15 @@
 package org.requirementsascode.being.counter.impl;
 
+import org.requirementsascode.being.Properties;
+
 import lombok.Data;
 
-@Data
-class Counter{
-  private final String id;
-  private int value = 0;
-  
+@Data @Properties
+class Counter {
+  final String id;
+  int value;
+
   void increment() {
-	  value++;
+    value++;
   }
 }
