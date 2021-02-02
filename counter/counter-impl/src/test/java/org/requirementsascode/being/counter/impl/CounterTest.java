@@ -36,11 +36,4 @@ public class CounterTest {
 
     assertEquals(2, behavior.aggregateRoot().getValue());
   }
-
-  @Test
-  @Ignore
-  public void multithreadingCausesException() throws InterruptedException {
-    boolean pass = new CounterThreads(behaviorTest::when, 100).run();
-    assertTrue(pass);
-  }
 }

@@ -1,4 +1,4 @@
-package org.requirementsascode.being.counter.impl;
+package org.requirementsascode.being.counter.concurrency;
 
 import java.util.function.Consumer;
 
