@@ -32,7 +32,7 @@ defined by the [aggregate behavior](https://github.com/bertilmuth/being-samples/
 Instead of `aCounter`, you can use any valid string as a counter identifier.
 Each counter manages its (aggregate) state, i.e. the counter value, separately.
 
-Use POST requests for commands. The JSON must contain a `@type` property with simple class name of command, e.g. `IncrementCounter`
+Use POST requests for commands. The JSON must contain a `@type` property with the simple class name of command, e.g. `IncrementCounter`
 to increase the counter value.
 
 Example:
