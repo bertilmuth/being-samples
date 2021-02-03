@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/bertilmuth/being-samples.svg?branch=main)](https://travis-ci.com/bertilmuth/being-samples)
+[![Gitter](https://badges.gitter.im/requirementsascode/community.svg)](https://gitter.im/requirementsascode/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 Sample project for the [Being](https://github.com/bertilmuth/being) project.
 This is a variation of the Lagom hello world example.
 
@@ -25,7 +28,7 @@ Replace Joe by a different name, and the greeting will change.
 The service implementation answers the GET request with the response
 defined by the [aggregate behavior](https://github.com/bertilmuth/being-samples/blob/main/greetuser/greetuser-impl/src/main/java/org/requirementsascode/being/greetuser/impl/GreetUserBehavior.java)'s `responseMessage()` method.
 
-Use POST requests for commands. The JSON must contain a `@type` property with simple class name of command, e.g. `ChangeGreetingText`.
+Use POST requests for commands. The JSON must contain a `@type` property with the simple class name of a command, e.g. `ChangeGreetingText`.
 
 Example:
 
