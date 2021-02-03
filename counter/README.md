@@ -1,7 +1,11 @@
 [![Build Status](https://travis-ci.com/bertilmuth/being-samples.svg?branch=main)](https://travis-ci.com/bertilmuth/being-samples)
 [![Gitter](https://badges.gitter.im/requirementsascode/community.svg)](https://gitter.im/requirementsascode/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-Sample project for the [Being](https://github.com/bertilmuth/being) project.
+Counter sample project for the [Being](https://github.com/bertilmuth/being) project.
+You can increment any number of integer counters by using POST requests to the service,
+and get the current count using a GET request.
+
+This sample also demonstrates how to use mutable state in the aggregate root.
 
 # Getting started
 You need to have Java 8 and Maven >= 3.6.0 or higher installed to run the samples. 
