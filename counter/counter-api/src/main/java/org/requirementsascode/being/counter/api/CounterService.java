@@ -18,7 +18,7 @@ public interface CounterService extends AggregateService {
   }
   
   @Override
-  default List<Class<?>> incomingMessageTypes() {
+  default List<Class<?>> commandTypes() {
     return asList(IncrementCounter.class);
   }
   

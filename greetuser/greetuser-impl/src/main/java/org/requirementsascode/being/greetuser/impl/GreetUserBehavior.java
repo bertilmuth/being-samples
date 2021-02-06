@@ -15,12 +15,12 @@ class GreetUserBehavior extends AggregateBehavior<Greeting>{
   }
   
   @Override
-  public Object responseMessage() {
+  public Object responseToGet() {
     return new GreetingResponse(aggregateRoot().getText() + ", " + aggregateRoot().getId() + "!");
   }
   
   @Override
-  public Model incomingMessageHandlers() {
+  public Model commandHandlers() {
     Model model = Model.builder()
       .user(ChangeGreetingText.class).systemPublish(this::greetingTextChanged)
       .build();

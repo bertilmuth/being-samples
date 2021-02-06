@@ -13,13 +13,13 @@ class CounterBehavior extends AggregateBehavior<Counter>{
   }
   
   @Override
-  public Object responseMessage() {
+  public Object responseToGet() {
     CounterResponse counterResponse = new CounterResponse(aggregateRoot().getValue());
 	return counterResponse;
   }
   
   @Override
-  public Model incomingMessageHandlers() {
+  public Model commandHandlers() {
     Model model = Model.builder()
       .user(IncrementCounter.class).systemPublish(this::counterIncremented)
       .build();
