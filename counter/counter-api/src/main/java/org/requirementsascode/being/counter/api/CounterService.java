@@ -8,7 +8,7 @@ import org.requirementsascode.being.AggregateService;
 
 public interface CounterService extends AggregateService {  
   @Override
-  default String uniqueName() {
+  default String id() {
     return "CounterService";
   }
   
