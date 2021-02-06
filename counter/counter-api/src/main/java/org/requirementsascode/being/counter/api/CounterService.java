@@ -23,7 +23,7 @@ public interface CounterService extends AggregateService {
   }
   
   @Override
-  default List<Class<?>> outgoingMessageTypes() {
+  default List<Class<?>> responseTypes() {
     return asList(CounterResponse.class);
   }
 }

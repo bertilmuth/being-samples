@@ -69,12 +69,12 @@
         <dependency>
     		<groupId>org.requirementsascode</groupId>
     		<artifactId>being-core</artifactId>
-    		<version>0.0.1.13-SNAPSHOT</version>  
+    		<version>0.0.1.14-SNAPSHOT</version>  
   		</dependency>  
          <dependency>
     		<groupId>org.requirementsascode</groupId>
     		<artifactId>being-lagom</artifactId>
-    		<version>0.0.1.13-SNAPSHOT</version>   
+    		<version>0.0.1.14-SNAPSHOT</version>   
   		</dependency>    
     </dependencies> 
 

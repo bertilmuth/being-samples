@@ -23,7 +23,7 @@ public interface GreetUserService extends AggregateService {
   }
   
   @Override
-  default List<Class<?>> outgoingMessageTypes() {
+  default List<Class<?>> responseTypes() {
     return asList(GreetingResponse.class);
   }
 }
