@@ -25,10 +25,10 @@ import io.vlingo.xoom.turbo.Boot;
 
 @SuppressWarnings("all")
 public class Bootstrap {
-	public static final String CREATE_REQUEST = "/greetings";
-	public static final String UPDATE_REQUEST = "/greetings/change/{id}";
-	public static final String FIND_BY_ID_REQUEST = "/greetings/{id}";
-	public static final String FIND_ALL_REQUEST = "/greetings";
+	public static final String CREATE_PATH = "/greetings";
+	public static final String UPDATE_PATH = "/greetings/change/{id}";
+	public static final String FIND_BY_ID_PATH = "/greetings/{id}";
+	public static final String FIND_ALL_PATH = "/greetings";
 
 	private final Grid grid;
 	private final Server server;
@@ -49,10 +49,10 @@ public class Bootstrap {
 				.stage(grid)
 				.aggregateSupplier(() -> new Greeting())
 				.dataFromState(GreetingData::fromState)
-				.createRequest(CREATE_REQUEST, CreateGreeting.class)
-				.updateRequest(UPDATE_REQUEST, ChangeSalutation.class)
-				.findByIdRequest(FIND_BY_ID_REQUEST)
-				.findAllRequest(FIND_ALL_REQUEST)
+				.createRequest(CREATE_PATH, CreateGreeting.class)
+				.updateRequest(UPDATE_PATH, ChangeSalutation.class)
+				.findByIdRequest(FIND_BY_ID_PATH)
+				.findAllRequest(FIND_ALL_PATH)
 				.build();
 
 		Resources allResources = Resources.are(greetingRequestHandlers.routes());

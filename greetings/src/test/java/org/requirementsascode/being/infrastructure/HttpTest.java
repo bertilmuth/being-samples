@@ -5,9 +5,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.requirementsascode.being.infrastructure.Bootstrap.CREATE_REQUEST;
-import static org.requirementsascode.being.infrastructure.Bootstrap.FIND_ALL_REQUEST;
-import static org.requirementsascode.being.infrastructure.Bootstrap.UPDATE_REQUEST;
+import static org.requirementsascode.being.infrastructure.Bootstrap.*;
+import static org.requirementsascode.being.infrastructure.Bootstrap.FIND_ALL_PATH;
+import static org.requirementsascode.being.infrastructure.Bootstrap.UPDATE_PATH;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,36 +46,59 @@ class HttpTest {
 
 	private void assertNoGreetingsCreated() {
 		givenJsonClient()
-			.get(FIND_ALL_REQUEST).then().body("$", hasSize(0));
+			.get(FIND_ALL_PATH)
+			.then()
+			.body("$", hasSize(0));
 	}
 	
 	private void greetingsContain(final String propertyName, final String... values) {
 		givenJsonClient()
-			.get(FIND_ALL_REQUEST).then().body(propertyName, hasItems(values));
+			.get(FIND_ALL_PATH)
+			.then()
+			.body(propertyName, hasItems(values));
 	}
 
 	private String createAndAssertGreeting(String personName) {
-		Response response = 
+		Response greetingData = 
 			givenJsonClient()
 				.body("{\"personName\":\"" + personName + "\"}")
-				.post(CREATE_REQUEST);
+				.post(CREATE_PATH);
 			
-		assertThat(json(response, "personName"), is(personName));
-		assertThat(json(response, "salutation"), is(HttpTest.DEFAULT_SALUTATION));
-		assertThat(json(response, "greetingText"), is("Hello, " + personName));
-		return json(response, "id");
+		assertThat(json(greetingData, "personName"), is(personName));
+		assertThat(json(greetingData, "salutation"), is(DEFAULT_SALUTATION));
+		assertThat(json(greetingData, "greetingText"), is("Hello, " + personName));
+		
+		final String greetingId = json(greetingData, "id");
+		
+		givenJsonClient()
+			.get(pathWithId(FIND_BY_ID_PATH, greetingId))
+			.then()
+			.body("id", is(greetingId))
+			.body("salutation", is(DEFAULT_SALUTATION));
+				
+		return greetingId;
 	}
 	
 
 	private void updateAndAssertGreeting(final String personName, final String greetingId, final String salutation) {
-		Response response = 
+		Response greetingData = 
 			givenJsonClient()
 				.body("{\"salutation\":\"" + salutation + "\"}")
-				.patch(UPDATE_REQUEST.replace("{id}", greetingId));
+				.patch(pathWithId(UPDATE_PATH, greetingId));
 				
-			assertThat(json(response, "personName"), is(personName));
-			assertThat(json(response, "salutation"), is(salutation));
-			assertThat(json(response, "greetingText"), is(salutation + " " + personName));
+		assertThat(json(greetingData, "personName"), is(personName));
+		assertThat(json(greetingData, "salutation"), is(salutation));
+		assertThat(json(greetingData, "greetingText"), is(salutation + " " + personName));
+		
+		givenJsonClient()
+			.get(pathWithId(FIND_BY_ID_PATH, greetingId))
+			.then()
+			.body("id", is(greetingId))
+			.body("salutation", is(salutation));
+	}
+
+	private String pathWithId(final String path, final String greetingId) {
+		return path.replace("{id}", greetingId);
 	}
 
 	private String json(Response response, String path) {
