@@ -1,8 +1,0 @@
-language: java
-jdk:
-  - openjdk8
-  - openjdk14
-  - oraclejdk14
-
-script: cd greetuser && mvn test -B
-
