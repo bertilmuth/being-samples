@@ -19,7 +19,7 @@ public class Greeting implements EventSourcedAggregate<GreetingCommand, Greeting
 	@Override
 	public CommandHandlers<GreetingCommand, GreetingState> commandHandlers() {
 		return CommandHandlers.handle(
-			commandsOf(CreateGreeting.class).with((cmd,state) -> new GreetingCreated(state.id, "Hello, ", cmd.personName)),
+			commandsOf(CreateGreeting.class).with((cmd,state) -> new GreetingCreated(state.id, "Hello,", cmd.personName)),
 			commandsOf(ChangeSalutation.class).with((cmd, state) -> new SalutationChanged(state.id, cmd.salutation))
 		);
 	}
