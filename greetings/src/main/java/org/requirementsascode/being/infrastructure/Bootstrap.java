@@ -25,10 +25,10 @@ import io.vlingo.xoom.turbo.Boot;
 
 @SuppressWarnings("all")
 public class Bootstrap {
-	public static final String CREATE_PATH = "/greetings";
-	public static final String UPDATE_PATH = "/greetings/change/{id}";
-	public static final String FIND_BY_ID_PATH = "/greetings/{id}";
-	public static final String FIND_ALL_PATH = "/greetings";
+	static final String CREATE_PATH = "/greetings";
+	static final String UPDATE_PATH = "/greetings/change/{id}";
+	static final String FIND_BY_ID_PATH = "/greetings/{id}";
+	static final String FIND_ALL_PATH = "/greetings";
 
 	private final Grid grid;
 	private final Server server;
@@ -39,15 +39,17 @@ public class Bootstrap {
 		
 		QueryModel<GreetingData> queryModel = 
 			QueryModel.startEmpty(GreetingData.empty()) 
-				.mergeEventsOf(GreetingCreated.class, (event,previousData) -> GreetingData.from(event.id, event.salutation, event.personName))
-				.mergeEventsOf(SalutationChanged.class, (event,previousData) -> GreetingData.from(event.id, event.salutation, previousData.personName));
+				.mergeEventsOf(GreetingCreated.class, 
+					(event,previousData) -> GreetingData.from(event.id, event.salutation, event.personName))
+				.mergeEventsOf(SalutationChanged.class, 
+					(event,previousData) -> GreetingData.from(event.id, event.salutation, previousData.personName));
 		
 		startJournals(grid, queryModel);
 		
 		HttpRequestHandlers<GreetingCommand, GreetingState, GreetingData> greetingRequestHandlers = 
 			HttpRequestHandlers.builder()
 				.stage(grid)
-				.aggregateSupplier(() -> new Greeting())
+				.behaviorSupplier(() -> new Greeting())
 				.queryDataFromState(GreetingData::from)
 				.createRequest(CREATE_PATH, CreateGreeting.class)
 				.updateRequest(UPDATE_PATH, ChangeSalutation.class)
@@ -76,7 +78,7 @@ public class Bootstrap {
 		final Stage defaultStage = stage.world().stage();
 		QueryModelStateStoreProvider.using(defaultStage, queryModel);
 
-		Dispatcher dispatcher = ProjectionDispatcherProvider.using(defaultStage, queryModel).storeDispatcher;
+		final Dispatcher dispatcher = ProjectionDispatcherProvider.using(defaultStage, queryModel).storeDispatcher;
 		final SourcedTypeRegistry sourcedTypeRegistry = new SourcedTypeRegistry(stage.world());
 		CommandModelJournalProvider.using(defaultStage, sourcedTypeRegistry, dispatcher);
 	}
