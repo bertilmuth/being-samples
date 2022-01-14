@@ -1,5 +1,6 @@
 package org.requirementsascode.being.samples.greeting.infrastructure;
 
+import org.requirementsascode.being.Beings;
 import org.requirementsascode.being.CommandModelJournalProvider;
 import org.requirementsascode.being.HttpRequestHandlers;
 import org.requirementsascode.being.ProjectionDispatcherProvider;
@@ -44,7 +45,7 @@ public class Bootstrap {
 				.mergeEventsOf(SalutationChanged.class, 
 					(event,previousData) -> GreetingData.from(event.id, event.salutation, previousData.personName));
 		
-		startJournals(grid, queryModel);
+		Beings.baseOn(grid, queryModel);
 		
 		HttpRequestHandlers<GreetingCommand, GreetingState, GreetingData> greetingRequestHandlers = 
 			HttpRequestHandlers.builder()
@@ -72,15 +73,6 @@ public class Bootstrap {
 				System.out.println("=========================");
 			}
 		}));
-	}
-
-	private void startJournals(Stage stage, QueryModel<GreetingData> queryModel) {
-		final Stage defaultStage = stage.world().stage();
-		QueryModelStateStoreProvider.using(defaultStage, queryModel);
-
-		final Dispatcher dispatcher = ProjectionDispatcherProvider.using(defaultStage, queryModel).storeDispatcher;
-		final SourcedTypeRegistry sourcedTypeRegistry = new SourcedTypeRegistry(stage.world());
-		CommandModelJournalProvider.using(defaultStage, sourcedTypeRegistry, dispatcher);
 	}
 
 	public void stopServer() {
