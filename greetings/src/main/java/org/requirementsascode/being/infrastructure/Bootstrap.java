@@ -39,8 +39,8 @@ public class Bootstrap {
 		
 		QueryModel<GreetingData> queryModel = 
 			QueryModel.startEmpty(GreetingData.empty()) 
-				.mergeEventsOf(GreetingCreated.class, (event,previousData) -> GreetingData.from(event.id, event.salutation, event.personName, ""))
-				.mergeEventsOf(SalutationChanged.class, (event,previousData) -> GreetingData.from(event.id, event.salutation, previousData.personName, ""));
+				.mergeEventsOf(GreetingCreated.class, (event,previousData) -> GreetingData.from(event.id, event.salutation, event.personName))
+				.mergeEventsOf(SalutationChanged.class, (event,previousData) -> GreetingData.from(event.id, event.salutation, previousData.personName));
 		
 		startJournals(grid, queryModel);
 		
@@ -48,7 +48,7 @@ public class Bootstrap {
 			HttpRequestHandlers.builder()
 				.stage(grid)
 				.aggregateSupplier(() -> new Greeting())
-				.dataFromState(GreetingData::fromState)
+				.queryDataFromState(GreetingData::from)
 				.createRequest(CREATE_PATH, CreateGreeting.class)
 				.updateRequest(UPDATE_PATH, ChangeSalutation.class)
 				.findByIdRequest(FIND_BY_ID_PATH)

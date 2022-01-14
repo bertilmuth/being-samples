@@ -29,19 +29,19 @@ class HttpTest {
 	void checkGreetingsCreationAndUpdate() {
 		assertNoGreetingsCreated();
 		
-		final String jillsId = createAndAssertGreeting("Jill");
-		final String joesId = createAndAssertGreeting("Joe");
+		final String jillsId = createAndAssertGreeting("Jill", DEFAULT_SALUTATION);
+		final String joesId = createAndAssertGreeting("Joe", DEFAULT_SALUTATION);
 		
 		greetingsContain("id", jillsId, joesId);
 		greetingsContain("personName", "Jill", "Joe");
-		greetingsContain("salutation", DEFAULT_SALUTATION);
+		greetingsContain("greetingText", DEFAULT_SALUTATION + " Jill", DEFAULT_SALUTATION + " Joe");
 		
-		updateAndAssertGreeting("Joe", joesId, "Hi,");
-		updateAndAssertGreeting("Jill", jillsId, "Howdy");
+		updateAndAssertGreeting(joesId, "Joe", "Hi,");
+		updateAndAssertGreeting(jillsId, "Jill", "Howdy");
 		
 		greetingsContain("id", jillsId, joesId);
 		greetingsContain("personName", "Jill", "Joe");
-		greetingsContain("salutation", "Howdy", "Hi,");
+		greetingsContain("greetingText", "Howdy Jill", "Hi, Joe");
 	}
 
 	private void assertNoGreetingsCreated() {
@@ -58,43 +58,45 @@ class HttpTest {
 			.body(propertyName, hasItems(values));
 	}
 
-	private String createAndAssertGreeting(String personName) {
+	private String createAndAssertGreeting(final String personName, final String salutation) {
 		Response greetingData = 
 			givenJsonClient()
 				.body("{\"personName\":\"" + personName + "\"}")
 				.post(CREATE_PATH);
-			
+		
+		final String expectedGreetingText = salutation + " " + personName;
+
 		assertThat(json(greetingData, "personName"), is(personName));
-		assertThat(json(greetingData, "salutation"), is(DEFAULT_SALUTATION));
-		assertThat(json(greetingData, "greetingText"), is("Hello, " + personName));
+		assertThat(json(greetingData, "greetingText"), is(expectedGreetingText));
 		
 		final String greetingId = json(greetingData, "id");
 		
-		givenJsonClient()
-			.get(pathWithId(FIND_BY_ID_PATH, greetingId))
-			.then()
-			.body("id", is(greetingId))
-			.body("salutation", is(DEFAULT_SALUTATION));
-				
+		assertGet(greetingId, personName, expectedGreetingText);
+	
 		return greetingId;
 	}
-	
 
-	private void updateAndAssertGreeting(final String personName, final String greetingId, final String salutation) {
+	private void updateAndAssertGreeting(final String greetingId, final String personName, final String salutation) {
 		Response greetingData = 
 			givenJsonClient()
 				.body("{\"salutation\":\"" + salutation + "\"}")
 				.patch(pathWithId(UPDATE_PATH, greetingId));
-				
-		assertThat(json(greetingData, "personName"), is(personName));
-		assertThat(json(greetingData, "salutation"), is(salutation));
-		assertThat(json(greetingData, "greetingText"), is(salutation + " " + personName));
 		
+		final String expectedGreetingText = salutation + " " + personName;
+
+		assertThat(json(greetingData, "personName"), is(personName));
+		assertThat(json(greetingData, "greetingText"), is(expectedGreetingText));
+		
+		assertGet(greetingId, personName, expectedGreetingText);
+	}
+	
+	private void assertGet(final String greetingId, final String personName, final String expectedGreetingText) {
 		givenJsonClient()
 			.get(pathWithId(FIND_BY_ID_PATH, greetingId))
 			.then()
 			.body("id", is(greetingId))
-			.body("salutation", is(salutation));
+			.body("personName", is(personName))
+			.body("greetingText", is(expectedGreetingText));
 	}
 
 	private String pathWithId(final String path, final String greetingId) {

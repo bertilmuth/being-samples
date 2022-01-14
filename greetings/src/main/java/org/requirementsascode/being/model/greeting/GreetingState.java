@@ -4,7 +4,6 @@ public final class GreetingState {
 	public final String id;
 	public final String salutation;
 	public final String personName;
-	public final String greetingText;
 
 	public static GreetingState identifiedBy(final String id) {
 		return new GreetingState(id, "", "");
@@ -14,11 +13,10 @@ public final class GreetingState {
 		this.id = id;
 		this.salutation = salutation;
 		this.personName = personName;
-		this.greetingText = salutation + " " + personName;
 	}
 
 	@Override
 	public String toString() {
-		return "GreetingState [id=" + id + ", greetingText=" + greetingText + "]";
+		return "GreetingState [id=" + id + ", salutation=" + salutation + ", personName=" + personName + "]";
 	}
 }

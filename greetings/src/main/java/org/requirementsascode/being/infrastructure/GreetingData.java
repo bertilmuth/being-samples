@@ -8,41 +8,29 @@ import org.requirementsascode.being.model.greeting.GreetingState;
 @SuppressWarnings("all")
 public class GreetingData {
 	public final String id;
-	public final String salutation;
 	public final String personName;
 	public final String greetingText;
 
-	public static GreetingData fromState(final GreetingState greetingState) {
-		return from(greetingState.id, greetingState.salutation, greetingState.personName, greetingState.greetingText);
+	public static GreetingData from(final GreetingState state) {
+		return from(state.id, state.salutation, state.personName);
 	}
-
-	public static GreetingData from(final String id, final String salutation, final String personName, final String greetingText) {
-		return new GreetingData(id, salutation, personName, greetingText);
-	}
-
-	public static List<GreetingData> fromAll(final List<GreetingState> states) {
-		return states.stream().map(GreetingData::fromState).collect(Collectors.toList());
+	
+	public static GreetingData from(final String id, final String salutation, final String personName) {
+		return new GreetingData(id, personName, salutation + " " + personName);
 	}
 
 	public static GreetingData empty() {
-		return fromState(GreetingState.identifiedBy(""));
+		return from("", null, null);
 	}
 
-	private GreetingData(final String id, final String salutation, String personName, String greetingText) {
+	private GreetingData(final String id, final String personName, String greetingText) {
 		this.id = id;
-		this.salutation = salutation;
 		this.personName = personName;
 		this.greetingText = greetingText;
 	}
 
-	public GreetingState toGreetingState() {
-		return new GreetingState(id, salutation, personName);
-	}
-
-
 	@Override
 	public String toString() {
-		return "GreetingData [id=" + id + ", salutation=" + salutation + ", personName=" + personName
-				+ ", greetingText=" + greetingText + "]";
+		return "GreetingText [id=" + id + ", personName=" + personName + ", greetingText=" + greetingText + "]";
 	}
 }
