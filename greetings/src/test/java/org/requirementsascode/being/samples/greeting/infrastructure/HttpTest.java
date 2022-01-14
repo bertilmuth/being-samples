@@ -1,16 +1,18 @@
-package org.requirementsascode.being.infrastructure;
+package org.requirementsascode.being.samples.greeting.infrastructure;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.requirementsascode.being.infrastructure.Bootstrap.*;
-import static org.requirementsascode.being.infrastructure.Bootstrap.FIND_ALL_PATH;
-import static org.requirementsascode.being.infrastructure.Bootstrap.UPDATE_PATH;
+import static org.requirementsascode.being.samples.greeting.infrastructure.Bootstrap.CREATE_PATH;
+import static org.requirementsascode.being.samples.greeting.infrastructure.Bootstrap.FIND_ALL_PATH;
+import static org.requirementsascode.being.samples.greeting.infrastructure.Bootstrap.FIND_BY_ID_PATH;
+import static org.requirementsascode.being.samples.greeting.infrastructure.Bootstrap.UPDATE_PATH;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.requirementsascode.being.samples.greeting.infrastructure.Bootstrap;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

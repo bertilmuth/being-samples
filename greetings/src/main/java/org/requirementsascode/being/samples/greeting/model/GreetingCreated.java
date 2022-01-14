@@ -1,4 +1,4 @@
-package org.requirementsascode.being.model.greeting;
+package org.requirementsascode.being.samples.greeting.model;
 
 import io.vlingo.xoom.common.version.SemanticVersion;
 import io.vlingo.xoom.lattice.model.IdentifiedDomainEvent;

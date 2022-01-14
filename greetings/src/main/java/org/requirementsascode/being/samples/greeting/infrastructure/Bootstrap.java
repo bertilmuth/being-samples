@@ -1,17 +1,17 @@
-package org.requirementsascode.being.infrastructure;
+package org.requirementsascode.being.samples.greeting.infrastructure;
 
 import org.requirementsascode.being.CommandModelJournalProvider;
 import org.requirementsascode.being.HttpRequestHandlers;
 import org.requirementsascode.being.ProjectionDispatcherProvider;
 import org.requirementsascode.being.QueryModel;
 import org.requirementsascode.being.QueryModelStateStoreProvider;
-import org.requirementsascode.being.command.ChangeSalutation;
-import org.requirementsascode.being.command.CreateGreeting;
-import org.requirementsascode.being.command.GreetingCommand;
-import org.requirementsascode.being.model.greeting.Greeting;
-import org.requirementsascode.being.model.greeting.GreetingCreated;
-import org.requirementsascode.being.model.greeting.GreetingState;
-import org.requirementsascode.being.model.greeting.SalutationChanged;
+import org.requirementsascode.being.samples.greeting.model.Greeting;
+import org.requirementsascode.being.samples.greeting.model.GreetingCreated;
+import org.requirementsascode.being.samples.greeting.model.GreetingState;
+import org.requirementsascode.being.samples.greeting.model.SalutationChanged;
+import org.requirementsascode.being.samples.greetings.command.ChangeSalutation;
+import org.requirementsascode.being.samples.greetings.command.CreateGreeting;
+import org.requirementsascode.being.samples.greetings.command.GreetingCommand;
 
 import io.vlingo.xoom.actors.Stage;
 import io.vlingo.xoom.http.resource.Configuration.Sizing;

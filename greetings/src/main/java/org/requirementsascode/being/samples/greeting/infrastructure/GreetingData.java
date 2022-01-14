@@ -1,9 +1,9 @@
-package org.requirementsascode.being.infrastructure;
+package org.requirementsascode.being.samples.greeting.infrastructure;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.requirementsascode.being.model.greeting.GreetingState;
+import org.requirementsascode.being.samples.greeting.model.GreetingState;
 
 @SuppressWarnings("all")
 public class GreetingData {

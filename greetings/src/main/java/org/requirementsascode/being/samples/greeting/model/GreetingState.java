@@ -1,4 +1,4 @@
-package org.requirementsascode.being.model.greeting;
+package org.requirementsascode.being.samples.greeting.model;
 
 public final class GreetingState {
 	public final String id;

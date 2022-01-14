@@ -1,4 +1,4 @@
-package org.requirementsascode.being.model.greeting;
+package org.requirementsascode.being.samples.greeting.model;
 
 import static org.requirementsascode.being.CommandHandler.commandsOf;
 import static org.requirementsascode.being.EventHandler.eventsOf;
@@ -6,9 +6,9 @@ import static org.requirementsascode.being.EventHandler.eventsOf;
 import org.requirementsascode.being.AggregateBehavior;
 import org.requirementsascode.being.CommandHandlers;
 import org.requirementsascode.being.EventHandlers;
-import org.requirementsascode.being.command.ChangeSalutation;
-import org.requirementsascode.being.command.CreateGreeting;
-import org.requirementsascode.being.command.GreetingCommand;
+import org.requirementsascode.being.samples.greetings.command.ChangeSalutation;
+import org.requirementsascode.being.samples.greetings.command.CreateGreeting;
+import org.requirementsascode.being.samples.greetings.command.GreetingCommand;
 
 public class Greeting implements AggregateBehavior<GreetingCommand, GreetingState> {
 	@Override

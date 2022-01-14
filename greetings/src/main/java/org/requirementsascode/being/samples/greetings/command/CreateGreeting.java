@@ -1,4 +1,4 @@
-package org.requirementsascode.being.command;
+package org.requirementsascode.being.samples.greetings.command;
 
 public class CreateGreeting implements GreetingCommand{
 	public final String personName;
