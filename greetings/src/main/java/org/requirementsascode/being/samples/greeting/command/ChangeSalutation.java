@@ -1,4 +1,4 @@
-package org.requirementsascode.being.samples.greetings.command;
+package org.requirementsascode.being.samples.greeting.command;
 
 public class ChangeSalutation implements GreetingCommand{
 	public final String salutation;

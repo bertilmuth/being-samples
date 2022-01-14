@@ -6,13 +6,13 @@ import org.requirementsascode.being.HttpRequestHandlers;
 import org.requirementsascode.being.ProjectionDispatcherProvider;
 import org.requirementsascode.being.QueryModel;
 import org.requirementsascode.being.QueryModelStateStoreProvider;
+import org.requirementsascode.being.samples.greeting.command.ChangeSalutation;
+import org.requirementsascode.being.samples.greeting.command.CreateGreeting;
+import org.requirementsascode.being.samples.greeting.command.GreetingCommand;
 import org.requirementsascode.being.samples.greeting.model.Greeting;
 import org.requirementsascode.being.samples.greeting.model.GreetingCreated;
 import org.requirementsascode.being.samples.greeting.model.GreetingState;
 import org.requirementsascode.being.samples.greeting.model.SalutationChanged;
-import org.requirementsascode.being.samples.greetings.command.ChangeSalutation;
-import org.requirementsascode.being.samples.greetings.command.CreateGreeting;
-import org.requirementsascode.being.samples.greetings.command.GreetingCommand;
 
 import io.vlingo.xoom.actors.Stage;
 import io.vlingo.xoom.http.resource.Configuration.Sizing;

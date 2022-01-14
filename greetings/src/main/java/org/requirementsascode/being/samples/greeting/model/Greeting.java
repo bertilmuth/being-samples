@@ -6,9 +6,9 @@ import static org.requirementsascode.being.EventHandler.eventsOf;
 import org.requirementsascode.being.AggregateBehavior;
 import org.requirementsascode.being.CommandHandlers;
 import org.requirementsascode.being.EventHandlers;
-import org.requirementsascode.being.samples.greetings.command.ChangeSalutation;
-import org.requirementsascode.being.samples.greetings.command.CreateGreeting;
-import org.requirementsascode.being.samples.greetings.command.GreetingCommand;
+import org.requirementsascode.being.samples.greeting.command.ChangeSalutation;
+import org.requirementsascode.being.samples.greeting.command.CreateGreeting;
+import org.requirementsascode.being.samples.greeting.command.GreetingCommand;
 
 public class Greeting implements AggregateBehavior<GreetingCommand, GreetingState> {
 	@Override
