@@ -12,7 +12,6 @@ import static org.requirementsascode.being.samples.greeting.infrastructure.Boots
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.requirementsascode.being.samples.greeting.infrastructure.Bootstrap;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
