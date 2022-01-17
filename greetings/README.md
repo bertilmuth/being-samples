@@ -18,6 +18,7 @@ Follow these steps:
 In POST requests (for creating) and PATCH requests (for updating), use JSON to represent the commands.
 
 Here are some example commands, together with example reponses from the server.
+
 NOTE: On Windows 10 systems, use `curl.exe` instead of `curl`.
 
 Create a greeting for Joe:
