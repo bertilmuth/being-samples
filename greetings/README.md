@@ -7,7 +7,7 @@ Follow these steps:
 1. Open a shell, and clone the samples project:
 `git clone https://github.com/bertilmuth/being-samples.git`
 
-2. Switch to the sub directory of the sample, 
+2. Switch to the sub directory of the sample:
 `cd being-samples/greetings`
 
 3. Run the server:
