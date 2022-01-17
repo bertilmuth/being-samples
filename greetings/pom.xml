@@ -35,7 +35,7 @@
   	<dependency>
       <groupId>org.requirementsascode.being</groupId>
       <artifactId>being-core</artifactId>
-      <version>0.1.1-SNAPSHOT</version>
+      <version>0.1.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
