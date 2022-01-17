@@ -25,26 +25,24 @@ class GreetingTest {
 	}
 	
 	@Test
-	void updateGreetingOnce() {
+	void updatesGreetingOnce() {
 		behaviorTest
 			.givenEvents(new GreetingCreated("#1", "Hi", "Jill"))
 			.when(new ChangeSalutation("Hello"));
 		
-		assertThat(behaviorTest.state().id, is("#1"));
-		assertThat(behaviorTest.state().salutation, is("Hello"));
-		assertThat(behaviorTest.state().personName, is("Jill"));
+		final GreetingState expectedState = new GreetingState("#1", "Hello", "Jill");
+		assertThat(behaviorTest.state(), is(expectedState));
 	}
 	
 	@Test
-	void updateGreetingTwice() {
+	void updatesGreetingTwice() {
 		behaviorTest
 			.givenEvents(
 				new GreetingCreated("#1", "Hi", "Jill"),
 				new SalutationChanged("#1", "Howdy"))
 			.when(new ChangeSalutation("Moin"));
 		
-		assertThat(behaviorTest.state().id, is("#1"));
-		assertThat(behaviorTest.state().salutation, is("Moin"));
-		assertThat(behaviorTest.state().personName, is("Jill"));
+		final GreetingState expectedState = new GreetingState("#1", "Moin", "Jill");
+		assertThat(behaviorTest.state(), is(expectedState));
 	}
 }
