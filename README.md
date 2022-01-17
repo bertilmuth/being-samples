@@ -17,7 +17,7 @@ Follow these steps:
 
 4. Open a second shell. Now you can start sending requests.
 
-## Sending requests
+## Send requests
 In POST requests (for creating) and PATCH requests (for updating), use JSON to represent the commands.
 
 Here are some example commands, together with example reponses from the server.
