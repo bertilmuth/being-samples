@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'org.requirementsascode.being.samples'
+version = '0.1.1'
+
+if(JavaVersion.current() != JavaVersion.VERSION_1_8){
+    throw new GradleException("YOU MUST RUN THIS BUILD WITH JAVA8! PLEASE SET YOUR JAVA_HOME ACCORDINGLY!")
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8;
+targetCompatibility = JavaVersion.VERSION_1_8;
+
+application {
+    mainClass = 'org.requirementsascode.being.samples.greeting.infrastructure.Bootstrap'
+}
+	
+repositories {
+	mavenCentral()
+	maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+}
+	
+dependencies {
+    implementation 'io.vlingo.xoom:xoom-turbo:1.9.0'
+    implementation 'org.requirementsascode.being:being-core:0.1.1'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+	testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+	testImplementation 'io.rest-assured:rest-assured:4.4.0'	
+}
+
+test {
+	useJUnitPlatform()
+}
