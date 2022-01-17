@@ -27,8 +27,8 @@ public class Greeting implements AggregateBehavior<GreetingCommand, GreetingStat
 	public EventHandlers<GreetingState> eventHandlers() {
 		return EventHandlers.handle(
 			eventsOf(GreetingCreated.class)
-				.with((event, state) -> new GreetingState(state.id, event.salutation, event.personName)),
+				.with((event, state) -> new GreetingState(event.id, event.salutation, event.personName)),
 			eventsOf(SalutationChanged.class)
-				.with((event, state) -> new GreetingState(state.id, event.salutation, state.personName)));
+				.with((event, state) -> new GreetingState(event.id, event.salutation, state.personName)));
 	}
 }

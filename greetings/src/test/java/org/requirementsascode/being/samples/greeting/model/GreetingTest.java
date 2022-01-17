@@ -1,13 +1,12 @@
 package org.requirementsascode.being.samples.greeting.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
-import org.requirementsascode.being.AggregateBehavior;
 import org.requirementsascode.being.AggregateBehaviorTest;
+import org.requirementsascode.being.samples.greeting.command.ChangeSalutation;
 import org.requirementsascode.being.samples.greeting.command.CreateGreeting;
 import org.requirementsascode.being.samples.greeting.command.GreetingCommand;
 
@@ -23,5 +22,29 @@ class GreetingTest {
 	void createsOneGreeting() {
 		behaviorTest.when(new CreateGreeting("Jack"));
 		assertThat(behaviorTest.state().personName, is("Jack"));
+	}
+	
+	@Test
+	void updateGreetingOnce() {
+		behaviorTest
+			.givenEvents(new GreetingCreated("#1", "Hi", "Jill"))
+			.when(new ChangeSalutation("Hello"));
+		
+		assertThat(behaviorTest.state().id, is("#1"));
+		assertThat(behaviorTest.state().salutation, is("Hello"));
+		assertThat(behaviorTest.state().personName, is("Jill"));
+	}
+	
+	@Test
+	void updateGreetingTwice() {
+		behaviorTest
+			.givenEvents(
+				new GreetingCreated("#1", "Hi", "Jill"),
+				new SalutationChanged("#1", "Howdy"))
+			.when(new ChangeSalutation("Moin"));
+		
+		assertThat(behaviorTest.state().id, is("#1"));
+		assertThat(behaviorTest.state().salutation, is("Moin"));
+		assertThat(behaviorTest.state().personName, is("Jill"));
 	}
 }
