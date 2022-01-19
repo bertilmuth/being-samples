@@ -20,7 +20,7 @@ public class GreetingData {
 	}
 
 	public static GreetingData empty() {
-		return from("", null, null);
+		return from("", "", "");
 	}
 
 	private GreetingData(final String id, final String personName, String greetingText) {
